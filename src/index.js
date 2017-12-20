@@ -5,37 +5,28 @@ import { AppContainer } from 'react-hot-loader';
 
 // All Ccommented out code is configuration for redux:
 
-// import { Provider } from 'react-redux';
-// import { ConnectedRouter } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
 
-// import configureStore from './store/configureStore';
-// import configureHistory from './history/configureHistory';
+import configureStore from './store/configureStore';
+import configureHistory from './history/configureHistory';
 
 import App from './components/App';
 
 require('./scss/index.scss');
 
-// const store = configureStore();
-// const history = configureHistory();
-
-// const render = (Component) => {
-//   ReactDOM.render(
-//     <Provider store={store}>
-//       <ConnectedRouter history={history}>
-//         <AppContainer>
-//           <Component />
-//         </AppContainer>
-//       </ConnectedRouter>
-//     </Provider>,
-//     document.querySelector('.container'),
-//   );
-// };
+const store = configureStore();
+const history = configureHistory();
 
 const render = (Component) => {
   ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <AppContainer>
+          <Component />
+        </AppContainer>
+      </ConnectedRouter>
+    </Provider>,
     document.querySelector('.container'),
   );
 };

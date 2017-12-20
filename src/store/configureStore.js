@@ -1,4 +1,5 @@
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
@@ -9,7 +10,8 @@ import rootReducer from '../reducers';
 const history = configureHistory();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const routingMiddleware = routerMiddleware(history);
-const middleware = [thunk, routingMiddleware];
+const logger = createLogger();
+const middleware = [thunk, routingMiddleware, logger];
 
 const configureStore = (initialState = {}) => {
   const store = createStore(
