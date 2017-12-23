@@ -7,7 +7,7 @@ import firestore from '../rebase';
 export default class Header extends Component {
   state = {
     activeUser: null,
-    users: null,
+    users: [],
   }
 
   componentWillMount() {
@@ -19,7 +19,7 @@ export default class Header extends Component {
   }
 
   syncState = () => {
-    this.ref = firestore.rebase.syncDoc('Users/ids', {
+    this.ref = firestore.rebase.bindCollection('Users', {
       context: this,
       state: 'users',
     });
@@ -35,22 +35,17 @@ export default class Header extends Component {
       } else {
         return false;
       }
-      return true;
     });
+    // this.updateFireStore();
   }
 
-  updateFireStore = () => {
-    const { activeUser, users } = this.state;
-    if (users.ids.indexOf(activeUser.uid) === -1) {
-      // adding to fire store if this is a new user
-      this.setState(prevState => ({
-        ...prevState,
-        users: {
-          ids: [...prevState.users.ids, activeUser.uid],
-        },
-      }));
-    }
-  }
+  // updateFireStore = () => {
+  //   const { activeUser, users } = this.state;
+  //   console.log('updateFireStore', 'users: ', users, 'activeUser: ', activeUser);
+  //   if (users.indexOf(activeUser.uid) === -1) {
+  //     firestore.rebase.addToCollection('Users', { uid: activeUser.uid });
+  //   }
+  // }
 
   loginSuccess = (user) => {
     this.setState(prevState => ({
@@ -77,11 +72,11 @@ export default class Header extends Component {
     return (
       <div className="container__header">
         <h1>PIG</h1>
-        {activeUser.displayName ? (
-          <p key="1">{`${activeUser.displayName}`}</p>
+        {activeUser ? (
+          <p>{`${activeUser.displayName}`}</p>
         ) : [
-          <p>Log in with Facebook or Google!</p>,
-          <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />,
+          <p key="1">Log in with Facebook or Google!</p>,
+          <FirebaseAuth key="2" uiConfig={uiConfig} firebaseAuth={firebase.auth()} />,
         ]}
       </div>
     );

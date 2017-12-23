@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import { FirebaseAuth } from 'react-firebaseui';
-import firebase from 'firebase';
 
-import checkAuth from '../utils';
-
-import Header from './Header';
-import Map from './Map';
-
-import firestore from '../rebase';
-
+/* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
   render() {
     return (
