@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import firebase from 'firebase';
 
-import HomeContainer from '../containers/HomeContainer';
-import LoginContainer from '../containers/LoginContainer';
+import Home from '../components/Home';
+import Header from '../components/Header';
 
+/* eslint-disable react/prefer-stateless-function */
 export default class App extends Component {
-  state = {
-    user: null,
-    authorized: false,
-  }
-
   render() {
     return (
       <Router>
         <div className="container__main">
-          <Route exact path="/" component={LoginContainer} />
-          <Route exact path="/home" component={HomeContainer} />
+          <Header />
+          <Route exact path="/" component={Home} />
         </div>
       </Router>
     );

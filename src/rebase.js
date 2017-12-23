@@ -12,6 +12,11 @@ const app = firebase.initializeApp({
 });
 
 const db = firebase.firestore(app);
-const base = Rebase.createClass(db);
+const rebase = Rebase.createClass(db);
 
-export default base;
+const firestore = {
+  db,
+  rebase,
+};
+
+export default firestore;
