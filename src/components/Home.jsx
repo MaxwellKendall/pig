@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firestore from '../rebase';
 
+import Scrubs from './Scrubs';
+
 /* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
   static propTypes = {
@@ -34,10 +36,12 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.users);
     return (
       <div className="container__home">
-        <p>This is the Home Page</p>
+        <button>Create League</button>
+        <button>Join League</button>
+        <h2>Da Hall of Scrubs</h2>
+        <Scrubs />
       </div>
     );
   }

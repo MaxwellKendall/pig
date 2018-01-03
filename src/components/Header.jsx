@@ -15,7 +15,6 @@ export default class Header extends Component {
 
   signOut = () => {
     firebase.auth().signOut().then(() => {
-      
     });
   }
 

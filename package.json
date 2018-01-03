@@ -7,11 +7,9 @@
   "repository": "https://github.com/MaxwellKendall/",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --hot --open",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "yarn run test -- --watch",
-    "predeploy": "yarn run build",
-    "build": "react-scripts build",
-    "deploy": "yarn run build&&gh-pages -d build"
+    "build" : "NODE_ENV='production' webpack -p",
+    "deploy" : "npm run build && firebase deploy",
+    "firebase-init" : "firebase login && firebase init"
   },
   "author": "",
   "license": "ISC",

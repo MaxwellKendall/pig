@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 
 import { AppContainer } from 'react-hot-loader';
 
-// All Ccommented out code is configuration for redux:
-
 import App from './components/App';
 
 require('./scss/index.scss');

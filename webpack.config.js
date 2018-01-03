@@ -1,15 +1,18 @@
+const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: {
     app: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       'react-hot-loader/patch',
       './src/index.js',
     ],
   },
   output: {
-    path: __dirname,
+    // path: __dirname,
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -27,6 +30,9 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
@@ -35,3 +41,16 @@ module.exports = {
     contentBase: './',
   },
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+  ]);
+}
+
+module.exports = config;
