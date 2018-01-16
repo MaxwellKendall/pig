@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import firebase from 'firebase';
-
-// import Home from './Home';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class PrivateRoute extends Component {
@@ -18,7 +15,6 @@ export default class PrivateRoute extends Component {
   }
 
   render() {
-    console.log('privateRoute props.activeUSer', this.props.activeUser);
     return (
       <Route
         exact

@@ -15,7 +15,7 @@ export default class Scrubs extends Component {
   render() {
     const arr = ['Jeremy', 'Tyrone', 'Britt', 'Max'];
     return (
-      <ul className="scrubs">
+      <ul className="scrubs"> 
         {arr.map((el, index) => (
           <li key={index}>{el}</li>
         ))
