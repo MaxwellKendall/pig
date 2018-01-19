@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   entry: {
     app: [
-      // 'babel-polyfill',
       'react-hot-loader/patch',
       './src/index.js',
     ],
@@ -23,7 +22,8 @@ const config = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.(png|svg|jpg|gif)$/, use: 'file-loader?name=images/[name].[ext]' },
-      { test: /\.(woff|woff2|eot|ttf|otf)$/, use: 'file-loader?name=fonts/[name].[ext]' },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }] },
+      { test: /\.(woff|eot|ttf|otf)$/, use: 'file-loader?name=fonts/[name].[ext]' },
     ],
   },
   resolve: {

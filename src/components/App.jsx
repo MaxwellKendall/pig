@@ -10,7 +10,6 @@ import Login from '../components/Login';
 import Home from '../components/Home';
 import Header from '../components/Header';
 
-/* eslint-disable react/prefer-stateless-function */
 export default class App extends Component {
   state = {
     loading: true,

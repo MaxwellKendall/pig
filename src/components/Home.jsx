@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as modal from './common/ModalWrapper';
+
 import firestore from '../rebase';
-
+import SideBar from './SideBar';
 import Scrubs from './Scrubs';
+import NewLeague from './NewLeague';
 
-/* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
   static propTypes = {
     activeUser: PropTypes.object.isRequired,
@@ -35,13 +37,19 @@ export default class Home extends Component {
       });
   }
 
+  renderModal = () => {
+    modal.showModal({ Content: NewLeague, title: 'New League', closeModal: modal.closeModal });
+  }
+
   render() {
     return (
       <div className="container__home">
-        <button>Create League</button>
+      <SideBar>
+        <button onClick={this.renderModal}>Create League</button>
         <button>Join League</button>
         <h2>Da Hall of Scrubs</h2>
         <Scrubs />
+      </SideBar>
       </div>
     );
   }
